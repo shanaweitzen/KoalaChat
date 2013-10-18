@@ -1,0 +1,10 @@
+<div id="sign_in_container">
+	<div id="chatbubble"><%= image_tag("blueyellow.png")%></div>
+	<div class="sign"><h2>REGISTER</h2></div>	
+
+	<%= form_for @registrant, url: register_path, method: :post do |f| %>
+	<%= f.text_field :email, class:"email", placeholder: "Your Email" %>
+	<%= f.submit "register", class: "btn btn-primary" %>
+
+	<% end %>
+</div>

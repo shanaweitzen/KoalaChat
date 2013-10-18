@@ -1,0 +1,24 @@
+<%= form_for @user, url: "/sessions", method: :post do |f| %>
+<%if @user.errors.any? %>
+	<div class="error_messages">
+		<h2>Form is invalid</h2>
+		<ul>
+			<%for message in @user.errors.full_messages %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<div id="sign_in_container">
+	<div id="chatbubble"><%= image_tag("blueyellow.png")%></div>
+
+	<div class="form-area">	
+		<div class="sign"><h2>SIGN IN</h2></div>	
+			<p><%= f.text_field :email, class: "email", placeholder: "Your Email" %></p>
+			<p><%= f.password_field :password , class: "password", placeholder: " Your Password" %></p>
+			<p><%= f.submit "Sign In" , class:"btn btn-primary"%></p>
+			<p>Don't have an account? </p>
+			<p><%= link_to "Sign Up" , register_path %></p>
+		<% end %>
+	</div>
+</div>

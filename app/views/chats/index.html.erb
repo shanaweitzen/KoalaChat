@@ -1,0 +1,16 @@
+<p> This is the chat page for now, so that when I sign up, I can be redirected to an actual page </p>
+
+
+
+
+<div id="messageWindow">
+	<li><%= user.fist_name %></li>
+</div>
+
+<!-- set javascript variables -->
+<%= javascript_tag do %>
+  uid          = '<%= j @user.id.to_s %>';
+  cid          = '<%= j @chat.id.to_s %>';
+  pusher_key = '<%= j ENV['PUSHER_KEY'] %>';
+	
+<% end %>

@@ -1,0 +1,22 @@
+<div id="sign_in_container">
+	<div id="chatbubble"><%= image_tag("blueyellow.png") %>
+	</div>
+	<h1>Complete your Koala Account</h1>
+		<%= form_for(@user) do |f| %>
+		<% if @user.errors.any? %>
+		<div class="error_messages">
+			<h2>Form is invalid</h2>
+			<ul>
+				<% for message in @user.errors.full_messages %>
+				<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+		<% end %>
+		<p><%= f.text_field :first_name, placeholder: "First Name" %></p>
+		<p><%= f.text_field :last_name, placeholder: "Last Name" %></p>
+		<p><%= f.password_field :password, class: "password", placeholder: "Your Password"%></p>
+		<p><%= f.submit "Sign In",class:"btn btn-primary" %></p>
+		<%end%>
+	</div>
+</div>
