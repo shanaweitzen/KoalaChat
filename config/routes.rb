@@ -1,56 +1,42 @@
 KoalaChat::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+ get 'register', to: 'registrants#new', as: :register #form
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  post 'register', to: 'registrants#create' #this runs when you click button on the form- related to DB
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get 'register/:code', to: 'registrants#edit', as: :registration # 
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  delete 'register/:code', to: 'registrants#destroy' #use later
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  #Authentication
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  #Users 
+  get 'users/new', to: 'users#new', as: :new #get the form for sign up
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-  
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  get 'users/:id/edit', to: 'users#edit', as: :edit
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  get '/user/:id', to: 'users#show', as: :user
+
+  put 'users/:id', to: 'users#update', as:"update"
+
+  delete '/users/:id', to:'users#destroy', as:"delete"
+
+  resources :users
+
+  resources :chats
+
+  resources :messages, only: ['create']
+
+#Login
+
+ 
+ post '/sessions', to: 'sessions#create'  
+
+#Logout
+
+ delete '/sessions/:id', to:'sessions#destroy', as:'logout'      
+
+ root "site#index" 
+
+
 end
